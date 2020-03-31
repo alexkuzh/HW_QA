@@ -1,0 +1,512 @@
+{
+  "info": {
+    "_postman_id": "29343217-9bd8-46df-b4df-1a0ac42b55a2",
+    "name": "WIX_Ca-Marketing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Post new address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "//** test 4 *****************************************************************************************",
+              "var schema = pm.environment.get(\"schema_post\");",
+              "",
+              "pm.test(\"Response body schema and body content are valid\", function() {",
+              "        var data = JSON.parse(responseBody);",
+              "        var valid = tv4.validate(data, schema, false, true);",
+              "        if (valid !== true) {",
+              "            console.log(tv4.error);",
+              "        }",
+              "        pm.expect(valid).to.be.true;",
+              "        pm.environment.set(\"temp_id\", JSON.parse(responseBody).id.valueOf()); //save user's id",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "authorization",
+            "value": "{{auth}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"address\":{\r\n        \"fullName\":{\r\n            \"firstName\":\"Alex\",\r\n            \"lastName\":\"Kuzh\"\r\n        },\r\n        \"company\":\"company1\",\r\n        \"taxInfo\":{\r\n            \"id\":null,\r\n            \"type\":null\r\n        },\r\n        \"addressLine1\":\"111 West 111th Street\",\r\n        \"addressLine2\":\"second line\",\r\n        \"street\":{\r\n            \"name\":null,\r\n            \"number\":null\r\n        },\r\n        \"city\":\"Palos Hills\",\r\n        \"country\":\"USA\",\r\n        \"subdivision\":\"IL\",\r\n        \"zipCode\":\"11111\",\r\n        \"phoneNumber\":\"1234567890\"\r\n    },\r\n    \"setAsDefault\":true\r\n}"
+        },
+        "url": {
+          "raw": "{{url_address}}",
+          "host": [
+            "{{url_address}}"
+          ]
+        },
+        "description": "Post new address\nSave id in environment variables \"temp_id\""
+      },
+      "response": []
+    },
+    {
+      "name": "Get_all_addresses",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e8803ed2-a58d-47a0-8d59-602c049a3fa0",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "//** test 4 *****************************************************************************************",
+              "var schema = pm.environment.get(\"schema_get_all\"); ",
+              "",
+              "pm.test(\"Response body schema and body content are valid\", function() {",
+              "        var data = JSON.parse(responseBody);",
+              "        var valid = tv4.validate(data, schema, false, true);",
+              "        if (valid !== true) {",
+              "            console.log(tv4.error);",
+              "        }",
+              "        pm.expect(valid).to.be.true;",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{auth}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_address}}",
+          "host": [
+            "{{url_address}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_last_address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e8803ed2-a58d-47a0-8d59-602c049a3fa0",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "//** test 4 *****************************************************************************************",
+              "var schema = pm.environment.get(\"schema_get_all\"); ",
+              "",
+              "pm.test(\"Response body schema and body content are valid\", function() {",
+              "        var data = JSON.parse(responseBody);",
+              "        var valid = tv4.validate(data, schema, false, true);",
+              "        if (valid !== true) {",
+              "            console.log(tv4.error);",
+              "        }",
+              "        pm.expect(valid).to.be.true;",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "type": "text",
+            "value": "{{auth}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url_address}}/{{temp_id}}",
+          "host": [
+            "{{url_address}}"
+          ],
+          "path": [
+            "{{temp_id}}"
+          ]
+        },
+        "description": "Get last added address\nid from environment variables \"temp_id\""
+      },
+      "response": []
+    },
+    {
+      "name": "Patch_last_address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "authorization",
+            "value": "{{auth}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"address\": {\r\n        \"id\": \"c4c49a10-d6af-4193-adeb-39abd8100ab1\",\r\n        \"fullName\": {\r\n            \"firstName\": \"Alex1\",\r\n            \"lastName\": \"Kuzh\"\r\n        },\r\n        \"country\": \"USA\",\r\n        \"subdivision\": \"IL\",\r\n        \"city\": \"Palos Hills\",\r\n        \"zipCode\": \"11111\",\r\n        \"phoneNumber\": \"1234567890\",\r\n        \"company\": \"company1\",\r\n        \"addressLine1\": \"111 West 111th Street\",\r\n        \"addressLine2\": \"second line\"\r\n    },\r\n    \"isDefaultAddress\": true,\r\n    \"fieldMask\":{\r\n        \"paths\":[\r\n            \"fullName.firstName\",\r\n            \"fullName.lastName\",\r\n            \"company\",\r\n            \"addressLine1\",\r\n            \"addressLine2\",\r\n            \"city\",\r\n            \"country\",\r\n            \"subdivision\",\r\n            \"zipCode\",\r\n            \"phoneNumber\",\r\n            \"setAsDefault\"\r\n        ]\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_address}}/{{temp_id}}",
+          "host": [
+            "{{url_address}}"
+          ],
+          "path": [
+            "{{temp_id}}"
+          ]
+        },
+        "description": "Post new address\nSave id in environment variables \"temp_id\""
+      },
+      "response": []
+    },
+    {
+      "name": "Get_last_address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e8803ed2-a58d-47a0-8d59-602c049a3fa0",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "//** test 4 *****************************************************************************************",
+              "var schema = pm.environment.get(\"schema_get_all\"); ",
+              "",
+              "pm.test(\"Response body schema and body content are valid\", function() {",
+              "        var data = JSON.parse(responseBody);",
+              "        var valid = tv4.validate(data, schema, false, true);",
+              "        if (valid !== true) {",
+              "            console.log(tv4.error);",
+              "        }",
+              "        pm.expect(valid).to.be.true;",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "type": "text",
+            "value": "{{auth}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url_address}}/{{temp_id}}",
+          "host": [
+            "{{url_address}}"
+          ],
+          "path": [
+            "{{temp_id}}"
+          ]
+        },
+        "description": "Get last added address\nid from environment variables \"temp_id\""
+      },
+      "response": []
+    },
+    {
+      "name": "Delete_last_address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Body is correct\", function () {",
+              "    pm.response.to.have.body(\"{}\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "authorization",
+            "type": "text",
+            "value": "{{auth}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url_address}}/{{temp_id}}",
+          "host": [
+            "{{url_address}}"
+          ],
+          "path": [
+            "{{temp_id}}"
+          ]
+        },
+        "description": "Post new address\nSave id in environment variables \"temp_id\""
+      },
+      "response": []
+    },
+    {
+      "name": "Repeat Delete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+            "exec": [
+              "//** test 1 *****************************************************************************************",
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "",
+              "//** test 2 *****************************************************************************************",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "",
+              "//** test 3 *****************************************************************************************",
+              "pm.test(\"Response must be valid and have a body\", function() {",
+              "   pm.response.to.be.withBody;",
+              "   pm.response.to.be.json;",
+              "});",
+              "",
+              "pm.test(\"Response can't find address\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"cant_find_address_by_id\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "authorization",
+            "type": "text",
+            "value": "{{auth}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url_address}}/{{temp_id}}",
+          "host": [
+            "{{url_address}}"
+          ],
+          "path": [
+            "{{temp_id}}"
+          ]
+        },
+        "description": "Post new address\nSave id in environment variables \"temp_id\""
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

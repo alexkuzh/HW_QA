@@ -1,0 +1,309 @@
+/*1. Нечетное число
+Из двух чисел с разной четностью вывести на экран нечетное число. a, b - данные числа*/
+let a = 4;
+let b = 3;
+console.log('-- Task 1 ---------------');
+console.log('Odd is ',(a % 2 == 0) ? b:a);
+
+
+/*2. Деление на ноль
+Создайте две переменных со значениями 5 и -3. При помощи тернарного оператора поместите в новую переменную либо деление полученных чисел (если второе число не ноль), либо просто 1 (если второе число равно 0).*/
+a = 5;
+b = -3;
+console.log('-- Task 2 ---------------');
+console.log('b = -3: result is ',(b == 0) ? 1:a / b);
+b = 0;
+console.log('b = 0: result is ',(b == 0) ? 1:a / b);
+
+
+/*3. Большая проверка
+Создайте проверку, которая будет выполняться если число будет меньшим 50 и не равным 37, но при этом не меньше или равно 32.
+Также допишите условие, что если число будет равно 0 или 15, то условие также будет выполняться.*/
+a = 15;
+console.log('-- Task 3 ---------------');
+console.log('Number = ',a,' result is ', ((a < 50) & (a != 37) & (a >= 32) | (a == 0) | (a ==15)) ? 'True': 'False');
+
+/*4. Вывод в цикле "for"
+Выведите столбец чисел от 11 до 33. Используйте цикл "for".*/
+console.log('-- Task 4 ---------------');
+for (i = 11; i <=33 ; i++) {
+  console.log(i)
+  }
+
+/*5. Вывод в цикле "while"
+Выведите столбец чисел от 11 до 33. Используйте цикл "while".*/
+console.log('-- Task 5 ---------------');
+i = 11
+while (i <=33){
+  console.log(i)
+  i++
+}
+
+/*6. Вывод данных
+Выведите числа от -30 до 0. При этом выводите лишь каждое третье число. Используйте цикл "for".*/
+console.log('-- Task 6 ---------------');
+s = ''
+for (i = -30; i <=0 ; i = i+3) {
+  s = s + ' '+ i}
+console.log(s)
+
+/*7. Вывод данных. Используйте цикл "for" (continue).
+Выведите числа от 0 до 30. При этом выводите лишь каждое второе число с пропуском числа 15.*/
+console.log('-- Task 7 ---------------');
+s = ''
+for (i = 0; i <=30 ; i = i+2) {
+  if (i==15) {
+    continue
+  }
+  s = s + ' '+ i}
+console.log(s)
+
+/*
+8. Вывод данных. Используйте цикл "for" (break).
+Выведите числа от 10 до 100. При этом выводите лишь каждое четвертое число. Остановите выполнение кода если число достигнет 66.*/
+console.log('-- Task 8 ---------------');
+s = ''
+for (i = 10; i <=100 ; i = i+4) {
+  if (i==66) {
+    break
+  }
+  s = s + ' '+ i}
+console.log(s)
+
+/*9. Вывод данных в цикле "do...while"
+Выведите числа от 0 до 5. Используйте цикл "do...while".*/
+console.log('-- Task 9 ---------------');
+s = ''
+i = 0
+do{
+  s = s + ' '+ i //console.log(i) #double 5???
+  i++
+}
+while(i<=5)
+console.log(s)
+
+/*10. Создайте "switch statement" из 5 разных условий и условия по умолчанию (default)
+Ваш код должен принимать ввод от пользователя и выводить в консоль результат ввода или "default".*/
+console.log('-- Task 10 ---------------');
+let num = prompt("Enter your number?");
+switch (num){
+  case "1":
+    console.log(num);
+    break;
+  case "2":
+    console.log(num);
+    break;
+  case "3":
+    console.log(num);
+    break;
+  case "4":
+    console.log(num);
+    break;
+  case "5":
+    console.log(num);
+    break;
+  default:
+    console.log("default");
+    break;
+}
+
+/*11. Создайте "if - else if - else" statement" из 4 разных условий. С выводом в консоль результата и фразы типа string.*/
+console.log('-- Task 11 ---------------');
+let a = -3
+if (a > 4){
+  console.log('The number is more then 4')
+}
+else if (a == 4){
+  console.log('The number is 4')
+}
+else if ((a < 4) & (a > 0)){
+  console.log('The number is positive and less 4')
+}
+else {
+  console.log('The number is negative')
+}
+
+/*12. Create 2 variables (numbers with decimals like 0.00)
+Using Math.round(x) print the value of x rounded to its nearest integer.*/
+console.log('-- Task 12 ---------------');
+a = 3.14
+b = 2.71
+console.log(a,' rounded (Math.round) to ',Math.round(a,0))
+console.log(b,' rounded (Math.round) to ',Math.round(b,0))
+
+/*13. Create 1 variable (number)
+Using Math.pow(x, y) print the value of x to the power of y.*/
+console.log('-- Task 13 ---------------');
+let x = 2
+let y = 3
+console.log(x,'^',y,' result is ', Math.pow(x,y))
+
+/*14. Create 1 variable (number)
+Using Math.sqrt(x) print the square root of x.*/
+console.log('-- Task 14 ---------------');
+x = 16
+console.log('sqrt from ',x,' is ', Math.sqrt(x))
+
+/*15. Create 1 negative variable (number)
+Using Math.abs(x) print the absolute (positive) value of x.*/
+console.log('-- Task 15 ---------------');
+x = -16
+console.log('absolute value of ',x,' is ', Math.abs(x))
+
+/*16. Create 1 variable (number with decimals like 0.00)
+Using Math.ceil(x) print the value of x rounded up to its nearest integer.*/
+console.log('-- Task 16 ---------------');
+console.log(a,' rounded (Math.ceil) to ',Math.ceil(a,0))
+console.log(b,' rounded (Math.ceil) to ',Math.ceil(b,0))
+
+
+/*17. Create 1 variable (number with decimals like 0.00)
+Using Math.floor(x) print the value of x rounded down to its nearest integer.
+*/
+console.log('-- Task 17 ---------------');
+console.log(a,' rounded (Math.floor) to ',Math.floor(a,0))
+console.log(b,' rounded (Math.floor) to ',Math.floor(b,0))
+
+/*18. Find the lowest value in a list of arguments, using Math.min().
+19. Find the highest value in a list of arguments, using Math.max().*/
+console.log('-- Task 18,19 -------------');
+let arr = [1,2,3,4,5,6,9,8,7]
+console.log(arr,': min is ', Math.min(...arr), ' max is ',Math.max(...arr))
+
+/*20. Print the random number between 0 (inclusive), and 100 (exclusive), using Math.random().*/
+console.log('-- Task 20 ---------------');
+console.log('random number is ',Math.floor(Math.random()*100))
+
+/*21. Create an Array with 5 different elements like numbers and strings.
+- access an array element by referring to the index number [2]
+- print result
+- change the value of the first element in your array
+- print result
+- check the type of your array using "typeof()" function
+- print result
+- check the length of an array (the number of array elements)
+- print result
+- sort your array using "sort()" method
+- print result
+- access the Last Array Element using negative index number [ - ]
+- print result
+- print all array elements using a "for" loop
+- add a new element to an array is using the "push()" method
+- print result
+- convert your array to a string of (comma separated) array values, using "toString()" method
+- print result
+- join all array elements into a string, using "join()" method with * separator
+- print result
+- remove the last element from an array, using "pop()" method
+- print result
+- add a new element to an array (at the end), using "push()" method
+- print result
+- remove the first array element and "shifts" all other elements to a lower index, using "shift()" method
+- print result
+- add a new element to an array (at the beginning), and "unshifts" older elements, using "unshift()" method
+- print result
+- delete first element from your array by using operator "delete"
+- print result
+- add 2 new items to an array, using "splice()" method
+- print result
+- remove elements without leaving "holes" in the array, using "splice()" method
+- print result*/
+console.log('-- Task 21 ---------------');
+let arr = [1,3,5,2,4]
+console.log('Original array: ',arr)
+console.log('Index 2:', arr[2])
+arr[0] = 6
+console.log('Changed array ',arr)
+console.log('Type of array is ', typeof(arr))
+console.log('Length array is ', arr.length)
+arr.sort()
+console.log('Sorted Array ',arr)
+console.log('Last element is', arr[arr.length-1])
+console.log('Looping Array Elements')
+for (i = 0; i < arr.length; i++) {
+  console.log(arr[i])
+  }
+arr.push(1)
+console.log("Adding element ", arr)
+console.log('String array: ',arr.toString())
+console.log('String array with *: ',arr.join('*'))
+arr.pop()
+console.log('Pop array ', arr)
+arr.shift()
+console.log('Shifted array',arr)
+arr.unshift(9)
+console.log('Unshifted array',arr)
+delete arr[0]
+console.log('Deleted element array',arr)
+arr.splice(0,1,1,2)
+console.log('Spliced element array',arr)
+arr.splice(0,arr.length)
+console.log('Empty array by slice',arr)
+
+/*22. Create 2 Arrays with 4 different elements like numbers and strings in each.
+- creates a new array by merging (concatenating) existing arrays, using "concat()" method
+- print result/*/
+console.log('-- Task 22 ---------------');
+arr = [1,'a',2,'b']
+let arr1 = [2,'d',3,'v']
+merg_arr = arr.concat(arr1)
+console.log(merg_arr)
+
+/*23. Create 3 Arrays with 3 different elements like numbers and strings in each.
+- creates a new array by merging (concatenating) existing all 3 arrays, using "concat()" method
+- print result*/
+console.log('-- Task 23 ---------------');
+arr = ['a',1,2]
+arr1 = ['e',3,'q']
+let arr2 = [1,'a','d']
+merg_arr = arr.concat(arr1).concat(arr2)
+console.log(merg_arr)
+
+/*24. Create Array with 5 different elements.
+- slice out a piece of an array into a new array, starting from array element 1, using "slice()" method*/
+console.log('-- Task 24 ---------------');
+arr = [1,2,3,4,5]
+arr1 = arr.slice(1)
+console.log(arr1)
+
+/*25. Create Array with 5 different elements.
+- slice out a piece of an array into a new array, starting from array element 3, using "slice()" method*/
+console.log('-- Task 25 ---------------');
+arr = [1,2,3,4,5]
+arr1 = arr.slice(3)
+console.log(arr1)
+
+/*26. Create Array with 5 different "string" elements.
+- sort an array alphabetically, using "sort()" method
+- print result*/
+console.log('-- Task 26 ---------------');
+arr = ['a','f','r','w','s']
+arr.sort()
+console.log(arr)
+
+/*27. Create Array with 5 different "string" elements.
+- reverse the elements in an array using "reverse()" method*/
+console.log('-- Task 27 ---------------');
+arr = ['a','f','r','w','s']
+arr.reverse()
+console.log(arr)
+
+/*28. Create Array with 5 different "string" elements.
+- search an array for a second element value and returns its position using "indexOf()" method*/
+console.log('-- Task 28 ---------------');
+arr = ['a','f','r','w','s']
+console.log(arr.indexOf('f'))
+
+/*29. Create Array with 5 different "string" elements.
+- search an array for a last element value and returns its position using "lastIndexOf()" method*/
+console.log('-- Task 29 ---------------');
+arr = ['a','f','r','f','s']
+console.log(arr.lastIndexOf('f'))
+
+/*30. Print random number between 0 (inclusive), and 1 (exclusive), using "Math.random()"*/
+console.log('-- Task 30 ---------------');
+console.log(Math.random())
+
+/*31. Print random integers from 1 to 100, using "Math.random()" with "Math.floor()"*/
+console.log('-- Task 31 ---------------');
+console.log(Math.floor(Math.random()*99+1))

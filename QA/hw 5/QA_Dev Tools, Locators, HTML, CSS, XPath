@@ -1,0 +1,83 @@
+Image [InternetShortcut]
+      URL=https://drive.google.com/open?id=1LxhIXAVvLw-M9t0Bcsd-3M8d56HUxlBB&authuser=0
+
+
+// QA_Dev Tools, Locators, HTML, CSS, XPath
+1. Find XPath for ALL "radio-buttons"
+//*[@name='radio']
+
+2. Find XPath only for second "radio-button"
+//input[@id='radio2']
+
+3. Write unique XPath for "HTML5 inputs"
+//*[contains(text(),'HTML5 inputs')]
+
+4. Find XPath for "type-password" field
+//input[@type='password']
+
+5. Find XPath for id='ir'
+//input[@id='ir']
+
+6. Find XPath for button contains text "<button disabled>"
+//button[contains(text(),'<button disabled>')]
+
+7. Find XPath for name='radio'
+//*[@name='radio']
+
+8. Find XPath for id='radio1'
+//input[@id='radio1']
+
+9. Find XPath for link "http://twitter.com/cbracco"
+//a[@href='http://twitter.com/cbracco']
+
+10. Find XPath for "input" tag with attribute id='input__text'
+//input[@id='input__text']
+
+11. Find XPath for "any" attribute value with id='input__text'
+//*[@id='input__text']
+
+12. Find XPath by text value "Form elements"
+//*[contains(text(),'Form elements')]
+
+13. Find XPath by text value "Form elements" and link http://histo.io/#forms
+//a[contains(text(),'Form elements')]
+
+14. Find XPath by input type (email)
+//input[@type='email']
+
+
+15. Find XPath by partial value "ext Input"
+//*[contains(text(),'Text Input')]
+
+16. Find XPath by partial value "put__text"
+//*[contains(@id,'put__text')]
+
+17. Find XPath by "starts-with" for "id" tag with value "input__search"
+//*[starts-with(@id, 'input__search')]
+
+18. Find XPath by both values id='input__text' and "starts-with" "id" tag with value "input__search"
+//*[@id='input__text'][starts-with(@id,'input__search')]
+
+19. Find XPath by "starts-with" for "id" tag with value "input__search", then go to level UP to the parent
+//*[@id='input__search']/..
+
+20. Find XPath by “id” within “div” element contains text 'Definition list'
+//div//h3[contains(text(),'Definition list')]
+
+21. Find XPath by “id=select", then go one level inside and select option with value “Option Two”
+//select[@id='select']//option[(text()='Option Two')]
+
+22. Find XPath by “id=select", then go one level inside and select option contains text 'Option Two'
+//select[@id='select']//option[contains(text(),'Option Two')]
+
+23. Find XPath by “id=textarea”, then go 1 level UP, then find inside element item by “partial text” = "xtarea"
+//*[@id='textarea']/..//*[contains(text(),'xtarea')]
+
+24. Find XPath by “text=Valid”, then go 2 levels UP, then find inside element item by “id=input__password"
+//*[text()='Valid']/../..//*[@id='input__password']
+
+25. Find XPath by 2 attributes: "id=input__text2" and "type=number"
+//input[@id='input__text2' and @type="number"]
+
+26. Find XPath by placeholder="Enter Search Term"
+//input[@placeholder='Enter Search Term']
