@@ -1,0 +1,1769 @@
+{
+	"info": {
+		"_postman_id": "29343217-9bd8-46df-b4df-1a0ac42b55a2",
+		"name": "AlexKuzh_Ca-Marketing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Positive Tests",
+			"item": [
+				{
+					"name": "Post new address+",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+								"exec": [
+									"//** test get address *****************************************************************",
+									"var schema = JSON.parse(pm.environment.get(\"schema_post\")); //create schema in json",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"    pm.environment.set(\"temp_id\", JSON.parse(responseBody).id.valueOf()); //save user's id",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+								"exec": [
+									"//random zipcode (int) lenght = 5",
+									"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_address}}",
+							"host": [
+								"{{url_address}}"
+							]
+						},
+						"description": "Post new address\nSave id in environment variables \"temp_id\""
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_addresses+",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5a84b82-6dfa-4272-bb1a-8227e6bb9ea1",
+								"exec": [
+									"//** test get address *****************************************************************",
+									"// Пока уберем, т.к. будет вываливать ошибку, если хоть одна ошибка",
+									"// var schema = JSON.parse(pm.environment.get(\"schema_get\")); //create schema in json",
+									"",
+									"// pm.test(\"Validate schema\", () => {",
+									"//     pm.response.to.have.jsonSchema(schema);",
+									"// });",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0f2fa2d6-a016-4b8e-9ab3-cd7f67a21025",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_address}}",
+							"host": [
+								"{{url_address}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_last_address+",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8803ed2-a58d-47a0-8d59-602c049a3fa0",
+								"exec": [
+									"//** test get address *****************************************************************",
+									"var schema = JSON.parse(pm.environment.get(\"sсhema_get_one\")); //create schema in json",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_address}}/{{temp_id}}",
+							"host": [
+								"{{url_address}}"
+							],
+							"path": [
+								"{{temp_id}}"
+							]
+						},
+						"description": "Get last added address\nid from environment variables \"temp_id\""
+					},
+					"response": []
+				},
+				{
+					"name": "Patch_last_address+",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+								"exec": [
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body(\"{}\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"12345\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}},\r\n    \"fieldMask\":{\r\n        \"paths\":[\r\n            \"fullName.firstName\",\r\n            \"fullName.lastName\",\r\n            \"company\",\r\n            \"addressLine1\",\r\n            \"addressLine2\",\r\n            \"city\",\r\n            \"country\",\r\n            \"subdivision\",\r\n            \"zipCode\",\r\n            \"phoneNumber\",\r\n            \"setAsDefault\"\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_address}}/{{temp_id}}",
+							"host": [
+								"{{url_address}}"
+							],
+							"path": [
+								"{{temp_id}}"
+							]
+						},
+						"description": "Post new address\nSave id in environment variables \"temp_id\""
+					},
+					"response": []
+				},
+				{
+					"name": "Get_last_address+ Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8803ed2-a58d-47a0-8d59-602c049a3fa0",
+								"exec": [
+									"//** test get address *****************************************************************",
+									"var schema = JSON.parse(pm.environment.get(\"sсhema_get_one\")); //create schema in json",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_address}}/{{temp_id}}",
+							"host": [
+								"{{url_address}}"
+							],
+							"path": [
+								"{{temp_id}}"
+							]
+						},
+						"description": "Get last added address\nid from environment variables \"temp_id\""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_last_address+",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+								"exec": [
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body(\"{}\");",
+									"});",
+									"",
+									"// Delete and set default id",
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"url_address\"), ",
+									"    method: 'GET',",
+									"    header: {",
+									"        Authorization: pm.environment.get(\"auth\")    ",
+									"    }",
+									"    },function (err, response) {",
+									"    pm.environment.set(\"temp_id\", response.json().defaultAddressId); //save user's id",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+								"exec": [
+									"pm.environment.set(\"deleted_id\", pm.environment.get(\"temp_id\"));",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_address}}/{{temp_id}}",
+							"host": [
+								"{{url_address}}"
+							],
+							"path": [
+								"{{temp_id}}"
+							]
+						},
+						"description": "Post new address\nSave id in environment variables \"temp_id\""
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0e6fb13f-f2e3-40b1-a94d-922039be439b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "58778ac9-0f63-4d23-a2f2-77009a4e48f8",
+						"type": "text/javascript",
+						"exec": [
+							"//** test 1 *****************************************************************************************",
+							"pm.test(\"Status code is 200 OK\", function () {     ",
+							"    pm.response.to.have.status(200);  ",
+							"    pm.response.to.be.success;",
+							"    pm.response.to.be.ok;     ",
+							"});",
+							"",
+							"//** test 2 *****************************************************************************************",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"//** test 3 *****************************************************************************************",
+							"pm.test(\"Response must be valid and have a body\", function() {",
+							"   pm.response.to.be.withBody;",
+							"   pm.response.to.be.json;",
+							"});",
+							"",
+							"//** test 4 *****************************************************************************************",
+							"pm.test(\"Response size is less than 10KB\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(10240);",
+							"});",
+							"",
+							"//** test 5 *****************************************************************************************",
+							"pm.test(\"Test header: valid keys and values\", function(){",
+							"    let head = JSON.parse(pm.environment.get(\"header\")); //I prefer to use environment variables",
+							"    //let head = JSON.parse(j); //U may use variable j in test body",
+							"    let headers = pm.response.headers.all();",
+							"    arr = [] //result arr",
+							"    for (let hkey in head){ //run in json template",
+							"        result = false; //put it in its original state",
+							"        for (let i in headers){ //run response header",
+							"             if (String(headers[i].key).toLowerCase() === String(hkey).toLowerCase() && //test key",
+							"                String(headers[i].value).toLowerCase() === String(head[hkey]).toLowerCase()){ //test value",
+							"                    result = true; //found valid key and value",
+							"            }",
+							"        }",
+							"        if (result === false){arr.push(hkey)} //if not to be ok result then save error in arr ",
+							"    }",
+							"    console.log(arr) //write lod arr with error's keys",
+							"    pm.expect(arr.length).to.be.equal(0); // arr must be empty",
+							"});"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Negative Tests",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Post_BadReq400-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () { \r",
+											"    pm.response.to.have.status(400); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error;\r",
+											"    pm.response.to.be.badRequest\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Bad Request\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}",
+									"host": [
+										"{{url_address}}"
+									]
+								},
+								"description": "post bad body"
+							},
+							"response": []
+						},
+						{
+							"name": "Post_BadBody400-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () { \r",
+											"    pm.response.to.have.status(400); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error;\r",
+											"    pm.response.to.be.badRequest\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Bad Request\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"   pm.environment.set(\"temp_id\", JSON.parse(responseBody).id.valueOf()); //save user's id\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//** test get address *****************************************************************\r",
+											"var schema = JSON.parse(pm.environment.get(\"sch_post_req_addr\")); //create schema in json\r",
+											"pm.test(\"Must be invalid body content\", () => {\r",
+											"        pm.expect(JSON.parse(pm.request.body)).not.to.have.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"111222\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}",
+									"host": [
+										"{{url_address}}"
+									]
+								},
+								"description": "post bad body content and expect 400error Bad Request"
+							},
+							"response": []
+						},
+						{
+							"name": "Post_Auth401-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 401 Unauthorized\", function () { \r",
+											"    pm.response.to.have.status(401); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.unauthorized;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"missing_identification, details: {}\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}",
+									"host": [
+										"{{url_address}}"
+									]
+								},
+								"description": "No uthorization"
+							},
+							"response": []
+						},
+						{
+							"name": "Post_Forbidden403-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8fa8f139-c036-4932-b81a-f84e89d74de4",
+										"exec": [
+											"pm.test(\"Status code is 403 Not Found\", function () { \r",
+											"    pm.response.to.have.status(403); \r",
+											"    pm.response.to.be.forbidden\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('403 Forbidden');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response mast have a html title\", () => { \r",
+											"    pm.expect($('title').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"    pm.expect($('center').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "0a15d97f-bc25-40fe-b85b-5b4ea3751aee",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qasvus.wixsite.com/ca-marketing/account/my-addresses",
+									"protocol": "https",
+									"host": [
+										"qasvus",
+										"wixsite",
+										"com"
+									],
+									"path": [
+										"ca-marketing",
+										"account",
+										"my-addresses"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						},
+						{
+							"name": "Post_NotFound404-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () { \r",
+											"    pm.response.to.have.status(404); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 404 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response is a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}{{$randomBsNoun}}",
+									"host": [
+										"{{url_address}}{{$randomBsNoun}}"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						},
+						{
+							"name": "Post_ServerErr500-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 500 Server Error\", function () { \r",
+											"    pm.response.to.have.status(500); \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 500 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response mast have a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\n\t\t\"fullName\": {\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\n\t\t\t\"las11Name\": \"{{$randomLastName}}\"\n\t\t},\n\t\t\"company\": \"{{$randomCompanyName}}\",\n\t\t\"taxInfo\": {\n\t\t\t\"id\": null,\n\t\t\t\"type\": null\n\t\t},\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\n\t\t\"street\": {\n\t\t\t\"name\": null,\n\t\t\t\"number\": null\n\t\t},\n\t\t\"city\": \"{{$randomCity}}\",\n\t\t\"country\": \"{{$randomCountry}}\",\n\t\t\"subdivision\": \"CA\",\n\t\t\"zipCode\": \"{{randomZip}}\",\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\n\t},\n\t\"setAsDefault\": {{$randomBoolean}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{}"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Address url",
+							"item": [
+								{
+									"name": "URL_500ServerErr-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ca44a02-f173-480c-85b5-0dca58acc2b7",
+												"exec": [
+													"pm.test(\"Status code is 500. Expected empty space or valid guid\", function () { ",
+													"    pm.response.to.have.status(500); ",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}/",
+											"host": [
+												"{{url_address}}"
+											],
+											"path": [
+												""
+											]
+										},
+										"description": "url + / Expected guid or empty"
+									},
+									"response": []
+								},
+								{
+									"name": "URL_500ServerErr-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ca44a02-f173-480c-85b5-0dca58acc2b7",
+												"exec": [
+													"pm.test(\"Status code is 500. Expected valid guid\", function () { ",
+													"    pm.response.to.have.status(500); ",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}/{{$randomBitcoin}}",
+											"host": [
+												"{{url_address}}"
+											],
+											"path": [
+												"{{$randomBitcoin}}"
+											]
+										},
+										"description": "url + / Expected valid guid or empty"
+									},
+									"response": []
+								},
+								{
+									"name": "URL_404NotFound-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "578f3336-e8ff-40ad-aa23-ea437075a958",
+												"exec": [
+													"pm.test(\"Status code is 404 Not Found, wrong address\", function () { ",
+													"    pm.response.to.have.status(404); ",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}{{$guid}}",
+											"host": [
+												"{{url_address}}{{$guid}}"
+											]
+										},
+										"description": "url + random string"
+									},
+									"response": []
+								},
+								{
+									"name": "URL_400BadRequest",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "578f3336-e8ff-40ad-aa23-ea437075a958",
+												"exec": [
+													"pm.test(\"Status code is 400 BadRequest. Need valid id\", function () { ",
+													"    pm.response.to.have.status(400); ",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}/{{$guid}}",
+											"host": [
+												"{{url_address}}"
+											],
+											"path": [
+												"{{$guid}}"
+											]
+										},
+										"description": "url + / + random guid"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Header",
+							"item": [
+								{
+									"name": "Get_Auth401-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d07a9b46-0c22-4241-afa3-da58ccac38e7",
+												"exec": [
+													"pm.test(\"Status code is 401 Unauthorized\", function () { ",
+													"    pm.response.to.have.status(401); ",
+													"    pm.response.to.be.unauthorized;",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}",
+											"host": [
+												"{{url_address}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Header_No_host-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ca44a02-f173-480c-85b5-0dca58acc2b7",
+												"exec": [
+													"pm.test(\"Status code is 400. No host in header\", function () { ",
+													"    pm.response.to.have.status(400); ",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"host": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url_address}}",
+											"host": [
+												"{{url_address}}"
+											]
+										},
+										"description": "Header hasn't field host"
+									},
+									"response": []
+								},
+								{
+									"name": "Header_invalid_host-",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "33d95ebe-9d4d-4d94-a011-e455d23ad368",
+												"exec": [
+													"pm.test(\"Status code is 404. Host in the header has error\", function () { ",
+													"    pm.response.to.have.status(404); ",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "f884f62c-85c8-4fc8-a4f1-e7677d107068",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"host": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "host",
+												"value": "qasvus.wixsite.com",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url_address}}",
+											"host": [
+												"{{url_address}}"
+											]
+										},
+										"description": "Header hasn't field host"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PATCH",
+					"item": [
+						{
+							"name": "Patch_NotFound404-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () { \r",
+											"    pm.response.to.have.status(404); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 404 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response is a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}234ewrwer",
+									"host": [
+										"{{url_address}}234ewrwer"
+									]
+								},
+								"description": "patch bad"
+							},
+							"response": []
+						},
+						{
+							"name": "Patch_BadRequest400-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () { \r",
+											"    pm.response.to.have.status(404); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 404 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response is a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}234ewrwer",
+									"host": [
+										"{{url_address}}234ewrwer"
+									]
+								},
+								"description": "patch bad Request"
+							},
+							"response": []
+						},
+						{
+							"name": "Patch_BadBody400-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () { \r",
+											"    pm.response.to.have.status(400); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error;\r",
+											"    pm.response.to.be.badRequest\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Bad Request\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//** test get address *****************************************************************\r",
+											"var schema = JSON.parse(pm.environment.get(\"patch_bad\")); //create schema in json\r",
+											"pm.test(\"Must be invalid body content\", () => {\r",
+											"        pm.expect(JSON.parse(pm.request.body)).not.to.have.jsonSchema(schema);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{auth}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"12345112\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}},\r\n    \"fieldMask\":{\r\n        \"paths\":[\r\n            \"fullName.firstName\",\r\n            \"fullName.lastName\",\r\n            \"company\",\r\n            \"addressLine1\",\r\n            \"addressLine2\",\r\n            \"city\",\r\n            \"country\",\r\n            \"subdivision\",\r\n            \"zipCode\",\r\n            \"phoneNumber\",\r\n            \"setAsDefault\"\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{{temp_id}}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{{temp_id}}"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						},
+						{
+							"name": "Patch_Auth401-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 401 Unauthorized\", function () { \r",
+											"    pm.response.to.have.status(401); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.unauthorized;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"missing_identification, details: {}\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{{temp_id}}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{{temp_id}}"
+									]
+								},
+								"description": "No uthorization"
+							},
+							"response": []
+						},
+						{
+							"name": "Patch_Forbidden403-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8fa8f139-c036-4932-b81a-f84e89d74de4",
+										"exec": [
+											"pm.test(\"Status code is 403 Not Found\", function () { \r",
+											"    pm.response.to.have.status(403); \r",
+											"    pm.response.to.be.forbidden\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('403 Forbidden');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response mast have a html title\", () => { \r",
+											"    pm.expect($('title').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"    pm.expect($('center').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "0a15d97f-bc25-40fe-b85b-5b4ea3751aee",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\r\n\t\t\"fullName\": {\r\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\r\n\t\t\t\"lastName\": \"{{$randomLastName}}\"\r\n\t\t},\r\n\t\t\"company\": \"{{$randomCompanyName}}\",\r\n\t\t\"taxInfo\": {\r\n\t\t\t\"id\": null,\r\n\t\t\t\"type\": null\r\n\t\t},\r\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\r\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\r\n\t\t\"street\": {\r\n\t\t\t\"name\": null,\r\n\t\t\t\"number\": null\r\n\t\t},\r\n\t\t\"city\": \"{{$randomCity}}\",\r\n\t\t\"country\": \"{{$randomCountry}}\",\r\n\t\t\"subdivision\": \"CA\",\r\n\t\t\"zipCode\": \"{{randomZip}}\",\r\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\r\n\t},\r\n\t\"setAsDefault\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://qasvus.wixsite.com/ca-marketing/account/my-addresses",
+									"protocol": "https",
+									"host": [
+										"qasvus",
+										"wixsite",
+										"com"
+									],
+									"path": [
+										"ca-marketing",
+										"account",
+										"my-addresses"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						},
+						{
+							"name": "Patch_ServerErr500-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 500 Server Error\", function () { \r",
+											"    pm.response.to.have.status(500); \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 500 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response mast have a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											"//random zipcode (int) lenght = 5",
+											"pm.environment.set(\"randomZip\",Math.floor(Math.random() * (99999 - 10000 + 1) + 10000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"address\":{\n\t\t\"fullName\": {\n\t\t\t\"firstName\": \"{{$randomFirstName}}\",\n\t\t\t\"las11Name\": \"{{$randomLastName}}\"\n\t\t},\n\t\t\"company\": \"{{$randomCompanyName}}\",\n\t\t\"taxInfo\": {\n\t\t\t\"id\": null,\n\t\t\t\"type\": null\n\t\t},\n\t\t\"addressLine1\": \"{{$randomStreetAddress}}\",\n\t\t\"addressLine2\": \"{{$randomStreetAddress}}\",\n\t\t\"street\": {\n\t\t\t\"name\": null,\n\t\t\t\"number\": null\n\t\t},\n\t\t\"city\": \"{{$randomCity}}\",\n\t\t\"country\": \"{{$randomCountry}}\",\n\t\t\"subdivision\": \"CA\",\n\t\t\"zipCode\": \"{{randomZip}}\",\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\"\n\t},\n\t\"setAsDefault\": {{$randomBoolean}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{}"
+									]
+								},
+								"description": "Patch 500 error"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete No Id 404-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7f9d94eb-b8b0-4ce9-987c-60d508c70ea9",
+										"exec": [
+											"pm.test(\"Status code is 404 Not Found\", function () { \r",
+											"    pm.response.to.have.status(404); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 404 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response is a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b6d35b71-2328-4215-bb58-aadbc7c131bc",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{auth}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url_address}}",
+									"host": [
+										"{{url_address}}"
+									]
+								},
+								"description": "Post new address\nSave id in environment variables \"temp_id\""
+							},
+							"response": []
+						},
+						{
+							"name": "Delete_No_Auth 401-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 401 Unauthorized\", function () { \r",
+											"    pm.response.to.have.status(401); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.unauthorized;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"missing_identification, details: {}\");\r",
+											"    pm.expect(jsonData.details).to.eql({});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{{temp_id}}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{{temp_id}}"
+									]
+								},
+								"description": "No uthorization"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete_BadRequest 400-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 400 Bad Request\", function () { \r",
+											"    pm.response.to.have.status(400); \r",
+											"    pm.response.to.be.clientError;    \r",
+											"    pm.response.to.be.error;\r",
+											"    pm.response.to.be.badRequest\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response must be valid and have a body\", function() {\r",
+											"   pm.response.to.be.withBody;\r",
+											"   pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(pm.response.text()).to.include('cant_find_address_by_id');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{{$guid}}",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{{$guid}}"
+									]
+								},
+								"description": "Delete Random id"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete_ServerError 500-",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "423d34a2-cc55-43f7-9518-0671b0f41122",
+										"exec": [
+											"pm.test(\"Status code is 500 Server Error\", function () { \r",
+											"    pm.response.to.have.status(500); \r",
+											"    pm.response.to.be.error\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Test response body\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Error 500 occurred');\r",
+											"});\r",
+											"\r",
+											"const $ = cheerio.load(pm.response.text())\r",
+											"pm.test(\"Response mast have a html body\", () => { \r",
+											"    pm.expect($('html').text()).to.not.be.empty \r",
+											"    pm.expect($('head').text()).to.not.be.empty \r",
+											"    pm.expect($('body').text()).to.not.be.empty\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3797b457-5b6c-4203-bc1f-7edb130a622b",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_address}}/{{$guid}dfgsgsdg",
+									"host": [
+										"{{url_address}}"
+									],
+									"path": [
+										"{{$guid}dfgsgsdg"
+									]
+								},
+								"description": "Delete wrong string"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8c52de8c-b506-496f-9162-68c0a1f47c55",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7891e407-9030-4dc2-b513-fb10a5c3e6ba",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{auth}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ec64db79-b7e9-42af-9900-a51e198aa260",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b1dd69fc-3a80-44d5-bf78-d22d148bfd88",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
