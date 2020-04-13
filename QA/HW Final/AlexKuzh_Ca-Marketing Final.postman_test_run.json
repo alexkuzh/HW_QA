@@ -1,0 +1,409 @@
+{
+	"id": "02154211-65f7-4c4e-a710-b8e959a61bf6",
+	"name": "AlexKuzh_Ca-Marketing Final",
+	"timestamp": "2020-04-13T17:32:22.795Z",
+	"collection_id": "3b31a0f1-abd3-4d68-99b8-d2f4aedde420",
+	"folder_id": 0,
+	"environment_id": "7dd06e79-fd92-4f07-a5a9-63cda30f48d3",
+	"totalPass": 36,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "4d44670b-6795-486a-ac90-7d90c8abafa0",
+			"name": "Post new address+",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses",
+			"time": 464,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true,
+				"Validate schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				464
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true,
+					"Validate schema": true
+				}
+			]
+		},
+		{
+			"id": "951524db-82cd-453c-a906-911ffa420ce2",
+			"name": "Get_all_addresses+",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses",
+			"time": 122,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				122
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true
+				}
+			]
+		},
+		{
+			"id": "f96362de-7237-435b-adca-d3e40ee964fc",
+			"name": "Get_last_address+",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/4ab56bd5-9050-49f7-be0f-69a2450e7fdc",
+			"time": 81,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true,
+				"Validate schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				81
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true,
+					"Validate schema": true
+				}
+			]
+		},
+		{
+			"id": "018675bc-83b8-4297-b909-0b51362f154f",
+			"name": "Patch_last_address+",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/4ab56bd5-9050-49f7-be0f-69a2450e7fdc",
+			"time": 262,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true,
+				"Body is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				262
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true,
+					"Body is correct": true
+				}
+			]
+		},
+		{
+			"id": "e92415cf-8e6b-4a3e-a344-87119a6f9aed",
+			"name": "Get_last_address+ Copy",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/4ab56bd5-9050-49f7-be0f-69a2450e7fdc",
+			"time": 77,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true,
+				"Validate schema": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true,
+					"Validate schema": true
+				}
+			]
+		},
+		{
+			"id": "3046f833-a7d6-45e8-b4b9-e8f586f5c4af",
+			"name": "Delete_last_address+",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses/4ab56bd5-9050-49f7-be0f-69a2450e7fdc",
+			"time": 139,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 OK": true,
+				"Response time is less than 1000ms": true,
+				"Response must be valid and have a body": true,
+				"Response size is less than 10KB": true,
+				"Test header: valid keys and values": true,
+				"Body is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response size is less than 10KB": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test header: valid keys and values": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				139
+			],
+			"allTests": [
+				{
+					"Status code is 200 OK": true,
+					"Response time is less than 1000ms": true,
+					"Response must be valid and have a body": true,
+					"Response size is less than 10KB": true,
+					"Test header: valid keys and values": true,
+					"Body is correct": true
+				}
+			]
+		},
+		{
+			"id": "ba842544-8c42-45b4-b32d-734e676cb6aa",
+			"name": "Get_Auth401-",
+			"url": "https://addresses.wixapps.net/_api/addresses-web/v1/addresses",
+			"time": 72,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401 Unauthorized": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401 Unauthorized": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 401 Unauthorized": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1217,
+	"collection": {
+		"requests": [
+			{
+				"id": "4d44670b-6795-486a-ac90-7d90c8abafa0",
+				"method": "POST"
+			},
+			{
+				"id": "951524db-82cd-453c-a906-911ffa420ce2",
+				"method": "GET"
+			},
+			{
+				"id": "f96362de-7237-435b-adca-d3e40ee964fc",
+				"method": "GET"
+			},
+			{
+				"id": "018675bc-83b8-4297-b909-0b51362f154f",
+				"method": "PATCH"
+			},
+			{
+				"id": "e92415cf-8e6b-4a3e-a344-87119a6f9aed",
+				"method": "GET"
+			},
+			{
+				"id": "3046f833-a7d6-45e8-b4b9-e8f586f5c4af",
+				"method": "DELETE"
+			},
+			{
+				"id": "ba842544-8c42-45b4-b32d-734e676cb6aa",
+				"method": "GET"
+			}
+		]
+	}
+}
