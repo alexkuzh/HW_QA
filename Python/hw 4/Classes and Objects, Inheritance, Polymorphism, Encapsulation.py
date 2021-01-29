@@ -123,39 +123,42 @@ car1.about()
 
 
 # *8************************************************
-class Car:
-    wheels = 4
+class Car:               # родительский класс
+    wheels = 4  #начальные значения (не обязательны)
     model = "Some"
     speed = 123.5
 
+    # конструктор, он запускается при создании экземпляра класса
     def __init__(self, wheels, model, speed):
         self.wheels = wheels
         self.model = model
         self.speed = speed
 
+    # метод который устанавливает параметры, но это не конструктор, это обычгый метод
     def set(self, wheels, model, speed):
         self.wheels = wheels
         self.model = model
         self.speed = speed
 
+    # метод который печатает все характеристики-свойства объекта
     def getAll(self):
-        self.__protected()
-
-    def __protected(self):
         print("Транспорт ", self.model, " может ехать со скоростью ", self.speed, " на всех ", self.wheels, " колесах!")
 
-
+# детский класс
 class Motorcycle(Car):
     engine = "Default"
 
+    # конструктор детского класса
     def __init__(self, wheels, model, speed, engine):
-        Car.__init__(self, wheels, model, speed)
-        self.engine = engine
+        # Car.__init__(self, wheels, model, speed) #это наследование от родительского класса, явно указываем родительский класс
+        super().__init__(wheels, model, speed) #а можно через super, что тоже самое
+        self.engine = engine #это новое свойство детского класса, но которого нет в родительской
 
     def getAll(self):
-        super().getAll()
-        print("Его двигатель:", self.engine)
+        super().getAll() #метод родительского класса
+        print("Его двигатель:", self.engine) #дополнительно выводим свойство engine
 
+    # просто метод изменения свойств
     def change(self, engine):
         self.engine = engine
         print("Двигатель мотоцикла установлен как: " + engine)
