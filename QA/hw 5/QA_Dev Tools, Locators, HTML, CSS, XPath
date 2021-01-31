@@ -55,8 +55,12 @@ Image [InternetShortcut]
 17. Find XPath by "starts-with" for "id" tag with value "input__search"
 //*[starts-with(@id, 'input__search')]
 
-18. Find XPath by both values id='input__text' and "starts-with" "id" tag with value "input__search"
+18. Find XPath by both values id='input__text' and "starts-with" "id" tag with value "input__search"\
 //*[@id='input__text'][starts-with(@id,'input__search')]
+#New edition
+18. Find XPath by values id='input__text' and by "type" attribute with value "text""
+//*[starts-with(@id,'input__text')][@type='text']
+
 
 19. Find XPath by "starts-with" for "id" tag with value "input__search", then go to level UP to the parent
 //*[@id='input__search']/..
@@ -81,3 +85,6 @@ Image [InternetShortcut]
 
 26. Find XPath by placeholder="Enter Search Term"
 //input[@placeholder='Enter Search Term']
+
+27. Find XPath for id='idm' as an child element for "HTML5 inputs" form
+//fieldset[@id='forms__html5']//input[@id='idm']
