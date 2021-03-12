@@ -101,8 +101,6 @@ def div(a, b, c = 2):
 print(div(18, 3, 3))
 print(div(18, 3))
 
-from datetime import datetime as d
-import random
 '''11. Создайте функцию, которая принимает заранее не установленное количество параметров. Выведите сумму всех переданных параметров.'''
 print('-- Task 11 -----------------------')
 def foo(l):
@@ -113,15 +111,17 @@ print(foo([1,2,3,4]))
 Выведите на экран полную дату. Для этого используйте объект datetime и его метод now.
 Из модуля импортируйте только объект datetime и добавьте к нему псевдоним.'''
 print('-- Task 12 -----------------------')
+from datetime import datetime as d
 print(d.now().date())
 '''13. Создайте случайное число в диапазоне от 0 до 20, используя модуль random и функцию randint.
 Просите пользователя угадать число до тех пор, пока он его не угадает.'''
 print('-- Task 13 -----------------------')
+import random
 a = random.randint(0,20)
 print(a) #hint
 while True:
-    #t = int(input())
-    t = a #test
+    t = int(input())
+    #t = a #test
     if t == a: break
 
 '''14. Create new function with default parameter value.
