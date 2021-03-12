@@ -727,7 +727,6 @@ tasty cherry'''
 print('Task 51')
 l = ["red", "big", "tasty"]
 l1 = ["apple", "banana", "cherry"]
-
 for x in l:
     for y in l1:
         print(x, y)
