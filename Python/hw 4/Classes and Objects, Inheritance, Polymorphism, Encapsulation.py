@@ -57,7 +57,8 @@ class Car:
         self.speed = speed
 
     def getAll(self):
-        print("Автомобиль ", self.model, " может ехать со скоростью ", self.speed, " на всех ", self.wheels,
+        print("Автомобиль ", self.model, " может ехать со скоростью ", 
+              self.speed, " на всех ", self.wheels,
               " колесах!")
 
 
@@ -66,8 +67,12 @@ class Bike(Car):
         self.engine = engine
 
     def getAll(self):
-        print("Мотоцикл ", self.model, " с двигателем " + str(self.engine) + " может ехать со скоростью ", self.speed,
-              " на всех ", self.wheels,
+        print("Мотоцикл ", 
+              self.model, 
+              " с двигателем " + str(self.engine) + " может ехать со скоростью ", 
+              self.speed,
+              " на всех ", 
+              self.wheels,
               " колесах!")
 
 
