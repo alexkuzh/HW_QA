@@ -100,7 +100,8 @@ class Car7:
         self.speed = speed
 
     def __getAll(self):
-        print("Автомобиль ", self.model, " может ехать со скоростью ", self.speed, " на всех ", self.wheels,
+        print("Автомобиль ", self.model, " может ехать со скоростью ", 
+              self.speed, " на всех ", self.wheels,
               " колесах!")
 
     def info(self):
